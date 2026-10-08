@@ -1,0 +1,116 @@
+/*
+ * Measured on the reference recording (1896px viewport): photos 228 × 288
+ * with ≈22px corners, fanned over ~1280px, captions as small speech bubbles.
+ * The drawing is 1300 × 420, scaled with --fan-scale; on phones the photos
+ * are pulled closer together (--fan-spread) and captions keep a readable size
+ * (--tag-scale undoes part of the scaling).
+ */
+.fan {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.stage {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1300px;
+  height: 420px;
+  translate: -50% 0;
+  scale: var(--fan-scale);
+  transform-origin: 50% 0;
+}
+
+.slot {
+  display: contents;
+}
+
+/* Every card is positioned by its center: left 50% + --x, top --y. */
+.card {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 228px;
+  height: 288px;
+  margin: -144px 0 0 -114px;
+  border-radius: 22px;
+  object-fit: cover;
+  box-shadow: 0 1px 3px rgb(9 9 11 / 0.08);
+  /* Start: stacked in the middle, straight. */
+  translate: 0 181px;
+  rotate: 0deg;
+  transition:
+    translate 900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay),
+    rotate 900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay);
+}
+
+.fan[data-open='true'] .card {
+  translate: calc(var(--x) * var(--fan-spread, 1)) var(--y);
+  rotate: var(--r);
+}
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--tone) 45%, var(--color-surface));
+}
+
+.placeholderIcon {
+  width: 40px;
+  height: 40px;
+  color: var(--color-text-subtle);
+}
+
+/* ---- Captions ------------------------------------------------------------ */
+
+.tag {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding-inline: 14px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-md);
+  line-height: 1;
+  white-space: nowrap;
+  translate: calc(var(--x) * var(--fan-spread, 1) - 50%) calc(var(--y) - 50%);
+  rotate: var(--r);
+  opacity: 0;
+  scale: calc(0.4 * var(--tag-scale, 1));
+  transition:
+    opacity 200ms var(--ease-out) 650ms,
+    scale 450ms cubic-bezier(0.34, 1.56, 0.64, 1) 650ms;
+}
+
+/* Little tail pointing down at the photo. */
+.tag::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 2px;
+  background: inherit;
+  rotate: 45deg;
+}
+
+.fan[data-open='true'] .tag {
+  opacity: 1;
+  scale: var(--tag-scale, 1);
+}
+
+.tagYellow {
+  background: var(--accent-yellow);
+  color: var(--color-text);
+}
+
+.tagNeutral {
+  background: var(--color-surface-soft);
+  color: var(--color-text-muted);
+}

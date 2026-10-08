@@ -1,0 +1,72 @@
+.strip {
+  position: relative;
+  overflow: hidden;
+  /* Vertical swipes keep scrolling the page; horizontal ones drag the strip. */
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  column-gap: var(--tile-gap);
+  will-change: transform;
+}
+
+.group {
+  display: flex;
+  flex: none;
+  gap: var(--tile-gap);
+}
+
+.group img,
+.group video {
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* "Drag" pill: replaces the mouse cursor while it is over the strip. */
+.cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  height: var(--control-size);
+  padding-inline: 1.85em 1.65em;
+  border-radius: var(--radius-full);
+  background: var(--tone);
+  color: var(--color-text);
+  font-size: var(--text-nav);
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  scale: 0.6;
+  transition:
+    opacity 180ms var(--ease-out),
+    scale 220ms var(--ease-out);
+}
+
+.cursorIcon {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .strip {
+    cursor: none;
+  }
+
+  .strip[data-cursor='visible'] .cursor {
+    opacity: 1;
+    scale: 1;
+  }
+
+  .strip[data-dragging='true'] .cursor {
+    scale: 0.92;
+  }
+}

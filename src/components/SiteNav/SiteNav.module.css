@@ -1,0 +1,134 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 20;
+  /* Clears the status bar on phones that draw the page under it. */
+  padding: calc(var(--nav-top) + env(safe-area-inset-top, 0px)) var(--gutter) 0;
+  /* Let clicks pass through the empty space around the nav. */
+  pointer-events: none;
+  transition: transform 350ms var(--ease-out);
+}
+
+.header[data-hidden='true']:not(:focus-within) {
+  transform: translateY(calc(-100% - 8px));
+}
+
+.header[data-hidden='true']:not(:focus-within) .nav {
+  pointer-events: none;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--control-gap);
+  pointer-events: auto;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+/* Shared shell for the logo, language and mail controls. */
+.circle {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: var(--control-size);
+  height: var(--control-size);
+  border: 0;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition:
+    background-color 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
+}
+
+.logo,
+.lang {
+  background: var(--color-surface-muted);
+  box-shadow: inset 0 0 0 1px var(--color-border);
+  color: var(--color-text);
+}
+
+.logo {
+  font-family: var(--font-sans);
+  font-size: calc(var(--text-nav) - 2px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.lang {
+  font-family: var(--font-mono);
+  font-size: calc(var(--text-nav) - 4px);
+  letter-spacing: 0.02em;
+}
+
+.logo:hover,
+.lang:hover {
+  background: var(--color-surface-hover);
+}
+
+.mail {
+  background: var(--accent-yellow);
+  color: var(--color-text);
+}
+
+.mail:hover {
+  transform: scale(1.05);
+}
+
+.circle:active {
+  transform: scale(0.97);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  height: var(--control-size);
+  padding-inline: var(--nav-pill-padding-x);
+  border-radius: var(--radius-full);
+  background: var(--color-surface-muted);
+  box-shadow: inset 0 0 0 1px var(--color-border);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(8px, 0.4vw + 5px, 12px);
+  height: calc(var(--control-size) - 14px);
+  padding-inline: var(--nav-link-padding-x);
+  border-radius: var(--radius-full);
+  font-size: var(--text-nav);
+  line-height: 1;
+  color: var(--color-text-strong);
+  transition: background-color 200ms var(--ease-out);
+}
+
+.link:hover,
+.link[aria-current='page'] {
+  background: var(--color-surface-hover);
+}
+
+.icon {
+  flex: none;
+  width: var(--ui-icon);
+  height: var(--ui-icon);
+}
+
+/* Phones: icon-only links; labels stay available to screen readers. */
+@media (max-width: 809px) {
+  .link {
+    width: calc(var(--control-size) - 8px);
+    height: calc(var(--control-size) - 8px);
+    justify-content: center;
+    padding: 0;
+  }
+
+  .label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}

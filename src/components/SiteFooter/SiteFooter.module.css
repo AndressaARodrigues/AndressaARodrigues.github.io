@@ -1,0 +1,164 @@
+/*
+ * Measured on the reference footer (1900px viewport): content inset 80px,
+ * eyes 77px below the panel, links row centred on the message, name filling
+ * the content width, legal line 32px from the bottom. Vertical spacing
+ * shrinks with the viewport height so the footer fits on one screen.
+ */
+.footer {
+  display: flex;
+  flex-direction: column;
+  /* Tucks under the panel above so the dark shows behind its round corners. */
+  position: relative;
+  z-index: 1;
+  margin-top: calc(-1 * var(--radius-panel-bottom));
+  padding: calc(var(--radius-panel-bottom) + clamp(32px, 8vh, 77px)) var(--content-inset) clamp(20px, 3.5vh, 32px);
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
+}
+
+.footer :focus-visible {
+  outline-color: var(--color-inverse-text);
+}
+
+.connect {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-top: clamp(28px, 9vh, 86px);
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--text-nav);
+  line-height: 1.45;
+}
+
+.links {
+  display: flex;
+  gap: var(--control-gap);
+}
+
+.circle {
+  display: grid;
+  place-items: center;
+  width: var(--control-size);
+  height: var(--control-size);
+  border-radius: var(--radius-full);
+  background: var(--color-inverse-surface);
+  box-shadow: inset 0 0 0 1px var(--color-inverse-border);
+  color: var(--color-inverse-text);
+  transition:
+    background-color 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
+}
+
+.circle:hover {
+  background: var(--color-inverse-surface-hover);
+  transform: translateY(-2px);
+}
+
+.circle:active {
+  transform: translateY(0);
+}
+
+.icon {
+  width: var(--ui-icon);
+  height: var(--ui-icon);
+}
+
+.nameButton {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-top: clamp(36px, 12vh, 119px);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 0.82;
+  letter-spacing: -0.01em;
+}
+
+/* "Click to copy email" pill: follows the mouse, offset right and below. */
+.tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8em;
+  height: var(--control-size);
+  padding-inline: 1.9em 1.8em;
+  border-radius: var(--radius-full);
+  background: var(--accent-yellow);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  translate: calc(var(--tip-x, 0px) + 2.2em) calc(var(--tip-y, 0px) + 1em);
+  opacity: 0;
+  scale: 0.6;
+  transform-origin: 0 0;
+  transition:
+    opacity 160ms var(--ease-out),
+    scale 220ms var(--ease-out);
+}
+
+.tipIcon {
+  width: 1.25em;
+  height: 1.25em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nameButton[data-tip='visible'] .tip {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.nameLine {
+  display: inline;
+}
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin-top: clamp(20px, 5.5vh, 54px);
+  font-size: var(--text-md);
+  line-height: 1.5;
+  color: var(--color-inverse-muted);
+}
+
+/* Phones: links move under the message, the name stacks on two lines. */
+@media (max-width: 809px) {
+  .connect {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .name {
+    line-height: 0.86;
+  }
+
+  .nameLine {
+    display: block;
+  }
+
+  .legal {
+    flex-direction: column;
+  }
+}

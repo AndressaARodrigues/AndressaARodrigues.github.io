@@ -1,0 +1,165 @@
+/*
+ * Measured on the reference recording (1916×912): logo top 79px below the
+ * card edge, 80px side inset, header → strip 82px, strip 548px tall,
+ * 54px below the strip, top corners ≈ 60px, hairline + soft shadow on top.
+ * Spacing shrinks with the viewport height (vh) so a card fits the screen.
+ * Content: project name, a one-line hook in the display serif, problem &
+ * solution, stack tags.
+ */
+.card {
+  position: sticky;
+  top: var(--sticky-top, 0px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 8vh, 80px);
+  padding-block: clamp(32px, 8.5vh, 76px) clamp(24px, 5.5vh, 52px);
+  border-radius: var(--radius-panel-top) var(--radius-panel-top) 0 0;
+  background: var(--color-surface);
+  box-shadow:
+    0 -1px 0 var(--color-border),
+    0 -10px 16px -10px rgb(9 9 11 / 0.07);
+  /* Tile height keeps the whole card inside the viewport when possible. */
+  --tile-height: clamp(220px, calc(100svh - 450px), 520px);
+  --tile-gap: clamp(8px, 0.4vw + 6px, 12px);
+}
+
+/* The first card is the top of the white panel: no extra edge there. */
+.card:first-child {
+  box-shadow: none;
+}
+
+/* The last card scrolls away normally, like in the reference. */
+.card:last-child {
+  position: relative;
+  top: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px 40px;
+  padding-inline: var(--content-inset);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: var(--text-meta);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+.thumb {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 0.35em;
+  background: var(--tone);
+  color: var(--color-text);
+}
+
+.thumb svg {
+  width: 62%;
+  height: 62%;
+}
+
+/* The hook: why the idea matters, in the same serif as the page headings. */
+.tagline {
+  max-width: 24em;
+  margin-top: clamp(10px, 1.6vh, 16px);
+  font-family: var(--font-display);
+  font-size: clamp(26px, 1.5vw + 14px, 42px);
+  line-height: 1.05;
+  /* Less tight than the big headings: this line is about half their size. */
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  text-wrap: balance;
+}
+
+/* The problem, then the solution. */
+.summary {
+  max-width: 74ch;
+  margin-top: clamp(10px, 1.6vh, 16px);
+  font-size: clamp(14px, 0.2vw + 13px, 16px);
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  text-wrap: pretty;
+}
+
+/* Technology tags. */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: clamp(14px, 2vh, 20px);
+}
+
+.tags li {
+  display: inline-flex;
+  align-items: center;
+  height: 2.1em;
+  padding-inline: 0.85em;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-soft);
+  box-shadow: inset 0 0 0 1px var(--color-border);
+  font-size: var(--text-md);
+  line-height: 1;
+  color: var(--color-text-strong);
+  white-space: nowrap;
+}
+
+.cta {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 0.5em;
+  height: max(42px, calc(var(--control-size) - 8px));
+  padding-inline: 1.5em 1.3em;
+  border-radius: var(--radius-full);
+  background: var(--color-text);
+  color: var(--color-surface);
+  font-size: var(--text-nav);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  transition: transform 200ms var(--ease-out);
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+}
+
+.ctaIcon {
+  width: 1em;
+  height: 1em;
+}
+
+/* ---- Phone: the button moves under the text ------------------------------ */
+
+@media (max-width: 809px) {
+  .card {
+    gap: clamp(24px, 5vh, 48px);
+    --tile-height: clamp(180px, 26svh, 280px);
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .tags {
+    gap: 6px;
+  }
+}

@@ -1,0 +1,46 @@
+.scene {
+  /* How many rows of pills the pile may hold; extra pills are left out. */
+  --pills-max-rows: 2;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.pill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 50% 50%;
+  will-change: transform;
+  pointer-events: auto;
+  touch-action: none;
+  cursor: grab;
+  visibility: hidden;
+}
+
+.scene[data-ready='true'] .pill {
+  visibility: visible;
+}
+
+.scene .pill[data-overflow='true'] {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.pill[data-dragging='true'] {
+  cursor: grabbing;
+}
+
+@media (max-width: 809px) {
+  .scene {
+    --pills-max-rows: 2.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pill {
+    cursor: default;
+  }
+}

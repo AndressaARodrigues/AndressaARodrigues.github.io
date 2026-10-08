@@ -1,0 +1,9 @@
+.fit {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.inner {
+  display: inline-block;
+}

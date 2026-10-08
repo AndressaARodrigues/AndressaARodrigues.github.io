@@ -1,0 +1,99 @@
+/* ---- Hero ---------------------------------------------------------------- */
+
+.hero {
+  /* Stays in place while the projects panel slides over it (reference recording). */
+  position: sticky;
+  top: var(--sticky-top, 0px);
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /*
+   * Fills the screen with the projects panel peeking 16px above the fold,
+   * as in the reference. Capped so very tall screens don't open a gap
+   * between the text and the pile.
+   */
+  min-height: clamp(540px, calc(100svh - 16px), 1040px);
+  padding: calc(var(--nav-top) + var(--control-size)) var(--gutter) 12px;
+  overflow: hidden;
+}
+
+.heroContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+}
+
+.hello {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-bottom: clamp(10px, 1.7vh, 16px);
+  font-size: var(--text-lg);
+  line-height: 1;
+  color: var(--color-text-muted);
+}
+
+.subtitle {
+  margin-top: clamp(16px, 3.3vh, 30px);
+  font-size: clamp(14px, 0.15vw + 13px, 16px);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.subtitle strong {
+  font-weight: 600;
+}
+
+.subtitleLine {
+  display: block;
+}
+
+.workLabel {
+  position: absolute;
+  inset-inline: 0;
+  bottom: clamp(14px, 2.4vh, 22px);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--color-text-subtle);
+  text-align: center;
+}
+
+/* ---- Projects panel ------------------------------------------------------ */
+
+.work {
+  /* Overlaps the bottom of the hero so the pile looks tucked behind it. */
+  margin-top: -8px;
+}
+
+/* Cards stack directly on each other (no gap), each sliding over the last. */
+.projects {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Phone --------------------------------------------------------------- */
+
+@media (max-width: 809px) {
+  .hero {
+    min-height: clamp(560px, calc(100svh - 16px), 900px);
+    /* Room for the pill pile under the text. */
+    padding-bottom: 96px;
+  }
+
+  .subtitleLine {
+    display: inline;
+  }
+}
+
+/* Focus moves here after the "Work" link; the scroll itself shows the change. */
+.work:focus {
+  outline: none;
+}

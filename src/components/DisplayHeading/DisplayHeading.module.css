@@ -1,0 +1,29 @@
+.heading {
+  font-family: var(--font-display);
+  font-size: var(--display-xl);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: var(--display-tracking);
+  word-spacing: var(--display-word-spacing);
+  color: var(--color-text);
+  text-align: center;
+}
+
+.heading em {
+  font-style: italic;
+}
+
+.line {
+  display: block;
+}
+
+@media (max-width: 809px) {
+  .heading {
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  .line {
+    display: inline;
+  }
+}

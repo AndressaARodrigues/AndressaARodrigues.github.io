@@ -1,0 +1,42 @@
+/*
+ * Measured on the reference recording: each eye 43 × 66px, 18px apart,
+ * pupil about 70% of the eye, a small glint near its lower edge.
+ */
+.eyes {
+  --eye-w: clamp(26px, 1.4vw + 16px, 43px);
+  --eye-h: calc(var(--eye-w) * 1.535);
+  display: flex;
+  gap: calc(var(--eye-w) * 0.42);
+  height: var(--eye-h);
+}
+
+.eye {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--eye-w);
+  height: var(--eye-h);
+  overflow: hidden;
+  border-radius: calc(var(--eye-w) / 2);
+  background: var(--color-inverse-text);
+}
+
+.pupil {
+  position: relative;
+  width: 72%;
+  height: 68%;
+  border-radius: 50%;
+  background: var(--color-inverse-bg);
+  transition: transform 140ms var(--ease-out);
+  will-change: transform;
+}
+
+.glint {
+  position: absolute;
+  right: 20%;
+  bottom: 18%;
+  width: 18%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--color-inverse-text);
+}

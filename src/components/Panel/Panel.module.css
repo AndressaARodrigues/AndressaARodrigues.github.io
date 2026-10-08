@@ -1,0 +1,13 @@
+.panel {
+  position: relative;
+  z-index: 2;
+  border-radius: var(--radius-panel-top) var(--radius-panel-top) var(--radius-panel-bottom) var(--radius-panel-bottom);
+  background: var(--color-surface);
+  box-shadow: 0 0 0 1px var(--color-border);
+}
+
+.flushTop {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: 0 1px 0 var(--color-border);
+}

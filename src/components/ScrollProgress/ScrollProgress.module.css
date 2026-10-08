@@ -1,0 +1,11 @@
+/* Measured on the reference recording: 2px, accent yellow, from the left edge. */
+.bar {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 30;
+  height: 2px;
+  background: var(--accent-yellow);
+  transform: scaleX(var(--progress, 0));
+  transform-origin: 0 50%;
+  pointer-events: none;
+}

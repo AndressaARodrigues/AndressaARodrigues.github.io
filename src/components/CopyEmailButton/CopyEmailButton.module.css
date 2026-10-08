@@ -1,0 +1,27 @@
+/* Measured on the reference About page: as tall as the nav controls, light gray. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  height: var(--control-size);
+  padding-inline: 1.4em 1.3em;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-soft);
+  color: var(--color-text-strong);
+  font-family: var(--font-sans);
+  font-size: var(--text-nav);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 200ms var(--ease-out);
+}
+
+.button:hover {
+  background: var(--color-surface-hover);
+}
+
+.icon {
+  width: 1.1em;
+  height: 1.1em;
+}

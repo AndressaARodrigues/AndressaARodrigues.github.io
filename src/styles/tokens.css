@@ -1,0 +1,93 @@
+/*
+ * Design tokens.
+ * Colors were sampled pixel-by-pixel from the reference screenshots.
+ *
+ * Sizes are fluid: each one grows with the viewport width between a phone
+ * minimum and the size measured on the reference (a 1916px-wide screen),
+ * taken about 5–10% smaller. Large display type is also limited by the
+ * viewport height (vh), so the hero and headings fit on short laptop screens.
+ * Breakpoints (810 / 1200px, Framer's defaults) only change layout.
+ */
+:root {
+  /* Surfaces */
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f7f7f8; /* nav pill, logo, language button */
+  --color-surface-soft: #f4f4f5; /* neutral pills */
+  --color-surface-hover: #ededef;
+  --color-border: #e4e4e7;
+
+  /* Inverse (dark footer) */
+  --color-inverse-bg: #09090b;
+  --color-inverse-surface: #18181b;
+  --color-inverse-surface-hover: #27272a;
+  --color-inverse-border: #27272a;
+  --color-inverse-text: #fafafa;
+  --color-inverse-muted: #a1a1aa;
+
+  /* Text */
+  --color-text: #09090b;
+  --color-text-strong: #27272a;
+  --color-text-muted: #71717a;
+  --color-text-body: #52525b; /* long-form text (About page) */
+  --color-text-subtle: #a1a1aa;
+
+  /* Accents */
+  --accent-yellow: #fdcf00;
+  --accent-orange: #ff894a;
+  --accent-mint: #5adba5;
+  --accent-lime: #d9f99d;
+  --accent-lavender: #d9c9ff;
+  --accent-pink: #fbcfe8;
+  --accent-blue: #a3d9ff;
+
+  /* Type families */
+  --font-display: 'Instrument Serif', 'Times New Roman', serif;
+  --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* Display (serif) — limited by width and by height */
+  --display-xl: clamp(36px, min(4.7vw, 9.6vh), 90px); /* home headline */
+  --display-l: clamp(32px, min(3.9vw, 8.2vh), 72px); /* about headline */
+  --display-m: clamp(26px, 2.4vw + 4px, 50px); /* "More / Work" */
+  --display-tracking: -0.05em;
+  --display-word-spacing: 0.04em;
+
+  /* Text (sans) */
+  --text-title: clamp(20px, 0.9vw + 12px, 29px); /* project titles */
+  --text-meta: clamp(15px, 0.3vw + 13px, 20px); /* project name — year */
+  --text-nav: clamp(15px, 0.3vw + 13.5px, 20px); /* nav, buttons, footer message */
+  --text-lg: clamp(15px, 0.2vw + 14px, 18px); /* body, lead, highlights */
+  --text-md: clamp(14px, 0.15vw + 13px, 17px); /* tags, tooltips, legal */
+  --text-sm: clamp(12px, 0.1vw + 12px, 15px);
+  --text-label: clamp(12px, 0.2vw + 11px, 16px); /* mono section labels */
+
+  /* Shape (reference: card/panel top corners ≈ 60, panel bottom ≈ 64) */
+  --radius-full: 9999px;
+  --radius-panel-top: clamp(28px, 2.6vw + 10px, 60px);
+  --radius-panel-bottom: clamp(32px, 2.8vw + 12px, 64px);
+  --radius-tile: clamp(14px, 0.6vw + 10px, 20px);
+
+  /* Controls (nav circles, nav pill and buttons share this height) */
+  --control-size: clamp(46px, 1.3vw + 40px, 66px);
+  --control-gap: clamp(6px, 0.25vw + 5px, 10px);
+  --nav-top: clamp(12px, 0.5vw + 10px, 20px);
+  --nav-link-padding-x: clamp(8px, 0.5vw + 6px, 15px);
+  --nav-pill-padding-x: clamp(4px, 0.5vw + 2px, 11px);
+  --ui-icon: clamp(18px, 0.3vw + 16px, 22px);
+
+  /* Physics pills */
+  --pill-height: clamp(40px, 1.4vw + 35px, 62px);
+  --pill-font-size: clamp(13px, 0.4vw + 11px, 19px);
+  --pill-padding-x: clamp(16px, 1vw + 12px, 32px);
+  --pill-gap: clamp(8px, 0.25vw + 7px, 12px);
+  --icon-size: clamp(16px, 0.3vw + 14px, 21px);
+
+  /* Layout */
+  --gutter: clamp(16px, 1.5vw + 10px, 32px);
+  /* Side inset of project cards and footer content */
+  --content-inset: clamp(20px, 4.2vw, 80px);
+  --avatar-size: clamp(34px, 0.5vw + 32px, 42px);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}

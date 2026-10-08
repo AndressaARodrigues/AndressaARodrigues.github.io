@@ -1,0 +1,22 @@
+/* Measured on the reference strip: 20px corners, hairline border, #fafafa fill. */
+.tile {
+  flex: none;
+  height: var(--tile-height, 360px);
+  aspect-ratio: var(--tile-ratio);
+  border-radius: var(--radius-tile);
+  object-fit: cover;
+  background: var(--color-bg);
+  box-shadow: inset 0 0 0 1px var(--color-surface-soft);
+}
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--tone) var(--tile-mix), var(--color-bg));
+}
+
+.icon {
+  width: clamp(26px, 1.2vw + 18px, 40px);
+  height: clamp(26px, 1.2vw + 18px, 40px);
+  color: var(--color-text-subtle);
+}

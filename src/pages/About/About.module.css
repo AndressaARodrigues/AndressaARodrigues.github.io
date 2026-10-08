@@ -1,0 +1,145 @@
+/*
+ * Measured on the reference About recording (1896px viewport): headline
+ * ≈ 80px serif on 2 lines, lead ≈ 19px, ~140px to the photo fan, a 700px
+ * text column with mono uppercase labels, ~250px of white below the buttons.
+ * Sizes come from the fluid tokens; vertical spacing also follows the
+ * viewport height so each part fits the screen.
+ */
+.page {
+  padding-bottom: clamp(96px, 26vh, 240px);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(14px, 3vh, 28px);
+  padding: calc(var(--nav-top) + var(--control-size) + clamp(32px, 11vh, 110px)) var(--gutter)
+    clamp(36px, 9vh, 104px);
+  text-align: center;
+}
+
+.headline {
+  font-size: var(--display-l);
+  line-height: 1.05;
+}
+
+.lead {
+  max-width: 640px;
+  /* Same size as the Home subtitle. */
+  font-size: clamp(14px, 0.15vw + 13px, 16px);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  text-wrap: balance;
+}
+
+.bio {
+  display: flex;
+  flex-direction: column;
+  max-width: calc(680px + 2 * var(--gutter));
+  margin: clamp(16px, 3vh, 24px) auto 0;
+  padding-inline: var(--gutter);
+}
+
+/* Body text: fixed 16px on every screen. */
+.paragraph {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text-body);
+}
+
+.paragraph + .paragraph {
+  margin-top: 1.25em;
+}
+
+.paragraph strong {
+  font-weight: 600;
+  color: var(--color-text-strong);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  margin-top: clamp(36px, 5.5vh, 50px);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 4.4vh, 40px);
+  margin-top: clamp(40px, 5.5vh, 50px);
+}
+
+.ctaTitle {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text-body);
+}
+
+.ctaActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--control-gap);
+}
+
+.circle {
+  display: grid;
+  place-items: center;
+  width: var(--control-size);
+  height: var(--control-size);
+  border-radius: var(--radius-full);
+  background: var(--color-surface-soft);
+  color: var(--color-text-strong);
+  transition: background-color 200ms var(--ease-out);
+}
+
+.circle:hover {
+  background: var(--color-surface-hover);
+}
+
+.circleIcon {
+  width: var(--ui-icon);
+  height: var(--ui-icon);
+}
+
+/* Labelled pill, same shape as the "Copy email" button next to it. */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  height: var(--control-size);
+  padding-inline: 1.4em 1.3em;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-soft);
+  color: var(--color-text-strong);
+  font-size: var(--text-nav);
+  line-height: 1;
+  white-space: nowrap;
+  transition: background-color 200ms var(--ease-out);
+}
+
+.pill:hover {
+  background: var(--color-surface-hover);
+}
+
+.pillIcon {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+/* Several paragraphs in one section: same rhythm as the intro (the flex gap already adds 0.6em). */
+.section .paragraph + .paragraph {
+  margin-top: 0.65em;
+}

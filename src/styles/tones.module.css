@@ -1,0 +1,28 @@
+/*
+ * Each tone class sets --tone; components decide how to use it
+ * (solid background, tinted tile, etc.).
+ */
+.yellow {
+  --tone: var(--accent-yellow);
+}
+.orange {
+  --tone: var(--accent-orange);
+}
+.mint {
+  --tone: var(--accent-mint);
+}
+.lime {
+  --tone: var(--accent-lime);
+}
+.lavender {
+  --tone: var(--accent-lavender);
+}
+.pink {
+  --tone: var(--accent-pink);
+}
+.blue {
+  --tone: var(--accent-blue);
+}
+.neutral {
+  --tone: var(--color-surface-soft);
+}
